@@ -3,23 +3,43 @@
 <div class="col-md-6">
 
     <h2>Contacts List</h2>
+    <div class="panel panel-default">
+        <div class="panel-body">
 
-    <div class="col-md-6">
-        <input type="text" class="form-control" ng-model="vm.phonebooksearch" placeholder="Search for a contact">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> Create Contact</button>
+                <button type="button" class="btn btn-default"><i class="fa fa-trash"></i> Remove</button>
+            </div>
 
-        <br>
-        <div class="well">
+            <input type="text" class="form-control clear-fix" ng-model="vm.phonebooksearch"
+                   placeholder="Search for a contact">
 
-            <div ng-repeat="item in vm.phonebooklist | filter: vm.phonebooksearch">
-                <label class="label label-success">{{item.name}}</label>
+            <div class="list-group">
+                <a ng-class="{ active: item.active }" ng-click="vm.itemClicked(item)" class="list-group-item"
+                   ng-repeat="item in vm.phonebooklist | filter: vm.phonebooksearch">
+                    {{item.name}}
+                </a>
             </div>
         </div>
-
     </div>
+
 
 </div>
 
 <div class="col-md-6">
 
     <h2>Display Contact</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <label>Name</label>: {{vm.phonebookdetails.name}}
+            <br>
+            <label>Number</label>: {{vm.phonebookdetails.number}}
+            <br>
+            <label>Address</label>: {{vm.phonebookdetails.address}}
+            <br>
+            <label>E-Mail</label>: {{vm.phonebookdetails.email}}
+        </div>
+    </div>
+
 </div>
