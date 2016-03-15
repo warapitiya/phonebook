@@ -29,7 +29,7 @@ function homeController($http, $uibModal) {
     /**
      * Getting sample data
      */
-    $http.get('sample.data.json')
+    $http.get('/api/contacts')
         .then(function (_data) {
             vm.phonebooklist = _data.data;
         }, function (_error) {
@@ -67,7 +67,7 @@ function homeController($http, $uibModal) {
 
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: 'views/home/create-contact/create.contact.view.html',
+            templateUrl: 'home/create-contact/create.contact.view.html',
             controller: 'CreateContact',
             controllerAs: 'vm',
             size: 'sm',

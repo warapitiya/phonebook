@@ -24,13 +24,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular-animate": "~1.4.0",
-    "angular-bootstrap": "~1.0.3",
-    "angular-toastr": "^1.7.0",
-    "angular-ui-router": "~0.2.15",
-    "angular-xeditable": "^0.1.9",
-    "bootstrap": "~3.3.6",
-    "font-awesome": "~4.5.0",
-    "lodash": "^4.2.1"
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "jquery": "^2.2.1",
+    "angular-ui-router": "^0.2.18",
+    "bootstrap": "^3.3.6",
+    "angular-bootstrap": "^1.2.4",
+    "lodash": "^4.6.1",
+    "font-awesome": "^4.5.0"
   }
 }
