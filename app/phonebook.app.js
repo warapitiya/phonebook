@@ -9,6 +9,7 @@ angular.module('phonebook', [
     'ngAnimate',
 
     //3rd party modules
+    'ui.bootstrap',
 
     //application core modules
     'phonebook.routes',

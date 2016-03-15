@@ -3,9 +3,9 @@
  */
 
 angular.module('phonebook.controllers', [])
-    .controller('HomeController', ['$http', homeController]);
+    .controller('HomeController', ['$http', '$uibModal', homeController]);
 
-function homeController($http) {
+function homeController($http, $uibModal) {
 
     //scope
     var vm = this;
@@ -21,6 +21,9 @@ function homeController($http) {
 
     //item click event function
     vm.itemClicked = itemClicked;
+
+    //create a new contact
+    vm.createContact = createContact;
 
 
     /**
@@ -54,6 +57,33 @@ function homeController($http) {
 
         //deep clone the object
         vm.phonebookdetails = _.clone(_record);
+    }
+
+
+    /**
+     * Create a new contact modal
+     */
+    function createContact() {
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/home/create-contact/create.contact.view.html',
+            controller: 'CreateContact',
+            controllerAs: 'vm',
+            size: 'sm',
+            resolve: {
+                items: function () {
+                    return null;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (_data) {
+            console.log(_data);
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+
     }
 
 }
