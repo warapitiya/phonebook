@@ -4,9 +4,9 @@
 
 
 angular.module('phonebook.controllers')
-    .controller('CreateContact', ['$uibModalInstance', createContact]);
+    .controller('CreateContact', ['$uibModalInstance', 'dataService', createContact]);
 
-function createContact($uibModalInstance) {
+function createContact($uibModalInstance, dataService) {
 
     //scope
     var vm = this;
@@ -17,11 +17,22 @@ function createContact($uibModalInstance) {
     //cancel
     vm.cancel = cancel;
 
+
+    vm.data = {};
+
     /**
      * on save event
      */
     function ok() {
-        $uibModalInstance.close(null);
+
+        dataService.addContact(_.clone(vm.data)).then(function (_data) {
+            $uibModalInstance.close(_data);
+        }, function (_error) {
+            console.error(_error);
+            $uibModalInstance.close(null);
+        });
+
+
     }
 
 

@@ -3,9 +3,9 @@
  */
 
 angular.module('phonebook.controllers', [])
-    .controller('HomeController', ['$http', '$uibModal', homeController]);
+    .controller('HomeController', ['$uibModal', 'dataService', homeController]);
 
-function homeController($http, $uibModal) {
+function homeController($uibModal, dataService) {
 
     //scope
     var vm = this;
@@ -25,16 +25,18 @@ function homeController($http, $uibModal) {
     //create a new contact
     vm.createContact = createContact;
 
+    //remove a contact
+    vm.removeContact = removeContact;
+
 
     /**
-     * Getting sample data
+     * get all contacts
      */
-    $http.get('/api/contacts')
-        .then(function (_data) {
-            vm.phonebooklist = _data.data;
-        }, function (_error) {
-            console.error(_error);
-        });
+    dataService.getContacts().then(function (_data) {
+        vm.phonebooklist = _data;
+    }, function (_error) {
+        console.error(_error);
+    });
 
 
     /**
@@ -60,6 +62,32 @@ function homeController($http, $uibModal) {
     }
 
 
+    function removeContact() {
+
+        console.log(vm.phonebookselected._id);
+
+        var _data = _.find(vm.phonebooklist, function (o) {
+            return _.isEqual(o._id, vm.phonebookselected._id);
+        });
+
+        console.log(_data);
+
+        dataService.removeContact(_data._id).then(function (_data) {
+            console.log(_data);
+
+            var _id = _.findIndex(vm.phonebooklist, function (o) {
+                return _.isEqual(o._id, vm.phonebookselected._id);
+            });
+
+            delete vm.phonebooklist[_id];
+
+        }, function (_error) {
+            console.error(_error);
+        });
+
+    }
+
+
     /**
      * Create a new contact modal
      */
@@ -79,7 +107,7 @@ function homeController($http, $uibModal) {
         });
 
         modalInstance.result.then(function (_data) {
-            console.log(_data);
+            vm.phonebooklist.push(_data);
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });

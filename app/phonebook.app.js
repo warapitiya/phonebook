@@ -13,5 +13,6 @@ angular.module('phonebook', [
 
     //application core modules
     'phonebook.routes',
-    'phonebook.controllers'
+    'phonebook.controllers',
+    'phonebook.api'
 ]);

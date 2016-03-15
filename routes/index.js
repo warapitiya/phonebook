@@ -7,4 +7,8 @@ router.get('/', controller.getIndex);
 
 router.get('/api/contacts', controller.contacts);
 
+router.post('/api/contact', controller.createContact);
+
+router.delete('/api/contact/:id', controller.removeContact);
+
 module.exports = router;
