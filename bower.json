@@ -1,0 +1,36 @@
+{
+  "name": "phonebook",
+  "description": "phonebook application",
+  "main": "index.html",
+  "authors": [
+    "Malindu Warapitiya <mwarapitiya@virtusa.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "phonebook",
+    "mongodb",
+    "expressjs",
+    "nodejs",
+    "angularjs"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.0",
+    "angular-bootstrap": "~1.0.3",
+    "angular-toastr": "^1.7.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-xeditable": "^0.1.9",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0",
+    "lodash": "^4.2.1"
+  }
+}
