@@ -16,12 +16,20 @@ cd phonebook/
 bower install & npm install
 ```
 
-#### Database (maybe in a new terminal window)
+## Mongodb Database Setup
+
+#### Database start (maybe in a new terminal window)
 ```sh
 mongod --dbpath $YOUR_PATH_TO_DB
 ```
 
-#### Start
+#### Import database
+```sh
+cd phonebook/
+mongoimport -d Phonebook -c contacts database_backup/contacts.json
+```
+
+## Start
 ```sh
 npm start
 ```
