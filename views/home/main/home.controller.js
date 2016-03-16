@@ -50,27 +50,30 @@ function homeController($uibModal, dataService) {
      */
     function updateContact(type, _data) {
 
+        //check if undefined or null
         if (_.isUndefined(_data) || _.isNull(_data)) {
             return "*Required";
         }
 
+        //check the minimum number length
         if (_.isEqual(type, 'number')) {
 
             var _string = _.clone(_data) + "";
-
-            console.log(_string.length);
 
             if (_.lt(_string.length, 7)) {
                 return "Should have minimum 7 numbers";
             }
         }
 
+        //create the _temp object to edit
         var _temp = {
             _id: vm.phonebookdetails._id
         };
 
         _temp[type] = _data;
 
+
+        //call the data service for update
         dataService.updateContact(_temp)
             .then(function (_result) {
 
@@ -78,7 +81,7 @@ function homeController($uibModal, dataService) {
 
             }, function (_error) {
                 console.error(_error);
-            })
+            });
     }
 
 
@@ -97,23 +100,29 @@ function homeController($uibModal, dataService) {
      */
     function itemClicked(_record) {
 
-        //skip if not null
-        if (!_.isNull(vm.phonebookselected)) {
-            //delete the active property
-            delete vm.phonebookselected.active;
+        if (!_.isUndefined(_record)) {
+
+            //skip if not null
+            if (!_.isNull(vm.phonebookselected)) {
+                //delete the active property
+                delete vm.phonebookselected.active;
+            }
+
+            //add active property
+            _record.active = true;
+
+            //cache a copy of _record
+            vm.phonebookselected = _record;
+
+            //deep clone the object
+            vm.phonebookdetails = _.clone(_record);
         }
-
-        //add active property
-        _record.active = true;
-
-        //cache a copy of _record
-        vm.phonebookselected = _record;
-
-        //deep clone the object
-        vm.phonebookdetails = _.clone(_record);
     }
 
 
+    /**
+     * Remove contact from list
+     */
     function removeContact() {
 
         console.log(vm.phonebookselected._id);
@@ -125,13 +134,17 @@ function homeController($uibModal, dataService) {
         console.log(_data);
 
         dataService.removeContact(_data._id).then(function (_data) {
-            console.log(_data);
 
             var _id = _.findIndex(vm.phonebooklist, function (o) {
                 return _.isEqual(o._id, vm.phonebookselected._id);
             });
 
-            delete vm.phonebooklist[_id];
+            vm.phonebooklist.splice(1, _id);
+
+            vm.phonebookdetails = {};
+            vm.phonebookselected = {};
+
+            console.log(vm.phonebooklist);
 
         }, function (_error) {
             console.error(_error);
