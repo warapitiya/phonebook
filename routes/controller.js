@@ -87,3 +87,38 @@ exports.removeContact = function (request, respond) {
     });
 
 };
+
+
+/**
+ * Update a contact record
+ * @param request
+ * @param respond
+ */
+exports.updateContact = function (request, respond) {
+
+    var _id = request.params.id;
+
+    contact.findById(_id, function (err, _contact) {
+        if (err) throw err;
+
+        // change the _contact values
+        Object.keys(request.body).forEach(function (key) {
+
+            //skip _id property
+            if (key != '_id') {
+                _contact[key] = request.body[key]
+            }
+
+        });
+
+        // save the _contact
+        _contact.save(function (err) {
+            if (err) throw err;
+
+            console.log('Contact successfully updated!');
+            respond.status(200).end();
+        });
+
+    });
+
+};

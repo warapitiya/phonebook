@@ -10,9 +10,11 @@ angular.module('phonebook', [
 
     //3rd party modules
     'ui.bootstrap',
+    'xeditable',
 
     //application core modules
     'phonebook.routes',
     'phonebook.controllers',
-    'phonebook.api'
+    'phonebook.api',
+    'phonebook.configs'
 ]);

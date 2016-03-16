@@ -2,18 +2,30 @@
     <h3 class="modal-title">Create Contact</h3>
 </div>
 <div class="modal-body">
-    <label>Name</label>
-    <input type="text" ng-model="vm.data.name" class="form-control" placeholder="Name">
-    <br>
-    <label>Number</label>
-    <input type="number" ng-model="vm.data.number" class="form-control" placeholder="Number">
-    <br>
-    <label>Address</label>
-    <textarea placeholder="Address" ng-model="vm.data.address" class="form-control" rows="4" cols="50"></textarea>
-    <br>
-
-    <label>Email</label>
-    <input type="email" ng-model="vm.data.email" class="form-control" placeholder="Email">
+    <ng-form name="createForm">
+        <section class="form-group" ng-class="{'has-error' : createForm.name.$invalid}">
+            <label>Name</label> <i uib-tooltip="*Required"
+                                   class="fa fa-question-circle hint"></i></label>
+            <input type="text" ng-model="vm.data.name" name="name" required class="form-control" placeholder="Name">
+        </section>
+        <section class="form-group" ng-class="{'has-error' : createForm.number.$invalid}">
+            <label>Number</label> <i uib-tooltip="Phone Number should contains minimum 7 characters"
+                                    class="fa fa-question-circle hint"></i></label>
+            <input type="number" ng-model="vm.data.number" name="number" required ng-minlength="7" class="form-control"
+                   placeholder="Number">
+        </section>
+        <section class="form-group" ng-class="{'has-error' : createForm.address.$invalid}">
+            <label>Address</label> <i uib-tooltip="Address should at least contains a single character"
+                                      class="fa fa-question-circle hint"></i></label>
+            <textarea placeholder="Address" name="address" ng-model="vm.data.address" required class="form-control" rows="4"
+                      cols="50"></textarea>
+        </section>
+        <section class="form-group" ng-class="{'has-error' : createForm.email.$invalid}">
+            <label>Email</label> <i uib-tooltip="Should be a valid email address"
+                                    class="fa fa-question-circle hint"></i></label>
+            <input type="email" ng-model="vm.data.email" name="email" required class="form-control" placeholder="Email">
+        </section>
+    </ng-form>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>

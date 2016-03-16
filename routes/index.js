@@ -11,4 +11,6 @@ router.post('/api/contact', controller.createContact);
 
 router.delete('/api/contact/:id', controller.removeContact);
 
+router.post('/api/contact/:id', controller.updateContact);
+
 module.exports = router;

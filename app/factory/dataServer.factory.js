@@ -9,7 +9,8 @@ function dataService($http, $q) {
     return {
         getContacts: getContacts,
         addContact: addContact,
-        removeContact: removeContact
+        removeContact: removeContact,
+        updateContact: updateContact
     };
 
 
@@ -69,5 +70,23 @@ function dataService($http, $q) {
 
         return deferred.promise;
 
+    }
+
+
+    /**
+     * update a contact
+     */
+    function updateContact(_data) {
+
+        var deferred = $q.defer();
+
+        $http.post('/api/contact/' + _data._id, _data)
+            .then(function (_data) {
+                deferred.resolve(_data.data);
+            }, function (_error) {
+                deferred.reject(_error);
+            });
+
+        return deferred.promise;
     }
 }

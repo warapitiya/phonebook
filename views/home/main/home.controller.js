@@ -28,6 +28,10 @@ function homeController($uibModal, dataService) {
     //remove a contact
     vm.removeContact = removeContact;
 
+    vm.isContactSelected = isContactSelected;
+
+    vm.updateContact = updateContact;
+
 
     /**
      * get all contacts
@@ -37,6 +41,54 @@ function homeController($uibModal, dataService) {
     }, function (_error) {
         console.error(_error);
     });
+
+
+    /**
+     * Update a data record
+     * @param type
+     * @param _data
+     */
+    function updateContact(type, _data) {
+
+        if (_.isUndefined(_data) || _.isNull(_data)) {
+            return "*Required";
+        }
+
+        if (_.isEqual(type, 'number')) {
+
+            var _string = _.clone(_data) + "";
+
+            console.log(_string.length);
+
+            if (_.lt(_string.length, 7)) {
+                return "Should have minimum 7 numbers";
+            }
+        }
+
+        var _temp = {
+            _id: vm.phonebookdetails._id
+        };
+
+        _temp[type] = _data;
+
+        dataService.updateContact(_temp)
+            .then(function (_result) {
+
+                console.log("Saved!");
+
+            }, function (_error) {
+                console.error(_error);
+            })
+    }
+
+
+    /**
+     * Is contact selected to diplay details
+     * @returns {boolean}
+     */
+    function isContactSelected() {
+        return _.isEmpty(vm.phonebookdetails);
+    }
 
 
     /**

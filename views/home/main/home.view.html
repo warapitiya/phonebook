@@ -7,8 +7,12 @@
         <div class="panel-body">
 
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default" ng-click="vm.createContact()"><i class="fa fa-plus"></i> Create Contact</button>
-                <button type="button" class="btn btn-default" ng-click="vm.removeContact()"><i class="fa fa-trash"></i> Remove</button>
+                <button type="button" class="btn btn-default" ng-click="vm.createContact()"><i class="fa fa-plus"></i>
+                    Create Contact
+                </button>
+                <button type="button" class="btn btn-default" ng-click="vm.removeContact()"><i class="fa fa-trash"></i>
+                    Remove
+                </button>
             </div>
 
             <input type="text" class="form-control clear-fix" ng-model="vm.phonebooksearch"
@@ -30,15 +34,15 @@
 
     <h2>Display Contact</h2>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-hide="vm.isContactSelected()">
         <div class="panel-body">
-            <label>Name</label>: {{vm.phonebookdetails.name}}
+            <label>Name</label>: <a href="#" onbeforesave="vm.updateContact('name', $data)" e-required editable-text="vm.phonebookdetails.name">{{vm.phonebookdetails.name}}</a>
             <br>
-            <label>Number</label>: {{vm.phonebookdetails.number}}
+            <label>Number</label>: <a href="#" onbeforesave="vm.updateContact('number', $data)" e-required editable-number="vm.phonebookdetails.number">{{vm.phonebookdetails.number}}</a>
             <br>
-            <label>Address</label>: {{vm.phonebookdetails.address}}
+            <label>Address</label>: <a href="#" onbeforesave="vm.updateContact('address', $data)" e-required editable-textarea="vm.phonebookdetails.address">{{vm.phonebookdetails.address}}</a>
             <br>
-            <label>E-Mail</label>: {{vm.phonebookdetails.email}}
+            <label>E-Mail</label>: <a href="#" onbeforesave="vm.updateContact('email', $data)" e-required editable-email="vm.phonebookdetails.email">{{vm.phonebookdetails.email}}</a>
         </div>
     </div>
 
