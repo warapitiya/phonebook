@@ -61,4 +61,4 @@ Clarifications
 
 #### Why use dataService factory($http) over $resource
 
- - Data Service factory is useful to because the we can write too many custom routes rather than $resource. 
+ - Data Service factory is useful because we can write too many custom routes rather than $resource. Yes $resource supports custom endpoints but it's too much complicated to maintain in large systems.
