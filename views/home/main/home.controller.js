@@ -135,11 +135,9 @@ function homeController($uibModal, dataService) {
 
         dataService.removeContact(_data._id).then(function (_data) {
 
-            var _id = _.findIndex(vm.phonebooklist, function (o) {
-                return _.isEqual(o._id, vm.phonebookselected._id);
+            _.remove(vm.phonebooklist, function(n) {
+                return _.isEqual(n._id, vm.phonebookselected._id);
             });
-
-            vm.phonebooklist.splice(1, _id);
 
             vm.phonebookdetails = {};
             vm.phonebookselected = {};

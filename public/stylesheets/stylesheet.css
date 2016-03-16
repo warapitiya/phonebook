@@ -1,7 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Sanchez);
 .clear-fix {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 .hint {
   color: lightslategray;
+}
+.title {
+  font-family: 'Sanchez', serif;
+}
+.title-line {
+  background-color: #344D5D;
+  color: white;
 }
